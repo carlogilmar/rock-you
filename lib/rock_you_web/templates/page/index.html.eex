@@ -1,4 +1,20 @@
 <div id="app">
   <h1 class="mt-5"> Rock You! </h1>
   <p>{{message}}</p>
+  <hr>
+  <p>{{acc}}</p>
+	<p>
+		alpha: {{alpha}} <br>
+		beta: {{beta}} <br>
+		gama: {{gama}} <br>
+		x: {{x}} <br>
+		y: {{y}} <br>
+		z: {{z}} <br>
+		alpha: {{aalpha}} <br>
+		beta: {{abeta}} <br>
+		gama: {{agama}} <br>
+		x: {{agx}} <br>
+		y: {{agy}} <br>
+		z: {{agz}} <br>
+	</p>
 </div>
