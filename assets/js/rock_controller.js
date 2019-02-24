@@ -59,12 +59,12 @@ export const app = new Vue({
 		},
     movement: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
-        this.mvn = "Reposo";
-      } else if (this.x > 10){
+        this.mvn = "";
+      } else if (this.x > 15){
         this.mvn = "Lateral";
-      } else if (this.y > 10){
+      } else if (this.y > 15){
         this.mvn = "Frontal";
-      } else if (this.z > 10){
+      } else if (this.z > 15){
         this.mvn = "Descendente";
       } else{
         this.mvn = "...";

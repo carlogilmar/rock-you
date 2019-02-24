@@ -5,7 +5,10 @@
     <h1 class="mt-5"> Rock You! </h1>
     <small>Connection: {{message}}</small>
     <hr>
-    <span class="badge badge-secondary"><h2>{{mvn}}</h2></span>
+    <span class="badge badge-info" v-if="mvn=='Reposo'"><h2>{{mvn}}</h2></span>
+    <span class="badge badge-success" v-if="mvn=='Lateral'"><h2>{{mvn}}</h2></span>
+    <span class="badge badge-danger" v-if="mvn=='Frontal'"><h2>{{mvn}}</h2></span>
+    <span class="badge badge-primary" v-if="mvn=='Descendente'"><h2>{{mvn}}</h2></span>
     <br><br><br>
     </div>
 
