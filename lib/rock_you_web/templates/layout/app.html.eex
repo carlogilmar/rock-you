@@ -29,12 +29,14 @@
 		<main role="main" class="container">
 		<br><br>
 			<%= render @view_module, @view_template, assigns %>
+		<br><br>
 		</main>
 
 		<footer class="footer">
-			<div class="container">
+			<div class="container text-center">
         <span class="text-muted"> <b>@carlogilmar</b> | Febrero, 2018.</span>
 			</div>
+      <br><br>
 		</footer>
 
 		<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

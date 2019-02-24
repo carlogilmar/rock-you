@@ -5,10 +5,7 @@ export const app = new Vue({
   el:"#app",
   data: {
     mvn: null,
-    message: "Socket abajo!",
-    message_x: "",
-    message_y: "",
-    message_z: "",
+    message: " 😟 ",
     acc: "Buscando...",
     e1: "-",
     e2: "-",
@@ -31,7 +28,7 @@ export const app = new Vue({
     this.channel.join()
       .receive("ok", resp => {
         console.log("Joined successfully", resp);
-        this.message = "Socket arriba!";
+        this.message = " 😊 ";
       })
       .receive("error", resp => { console.log("Unable to join", resp) });
     window.addEventListener('scroll', this.handleScroll);
@@ -62,22 +59,15 @@ export const app = new Vue({
 		},
     movement: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
-        this.message = "El dispositivo está en reposo sobre la mesa";
         this.mvn = "Reposo";
       } else if (this.x > 10){
         this.mvn = "Lateral";
-        this.message_x = "X Lateral";
-      } else if (this.y > 8){
+      } else if (this.y > 10){
         this.mvn = "Frontal";
-        this.message_y = "Y NorteSur";
-      } else if (this.z > 8){
+      } else if (this.z > 10){
         this.mvn = "Descendente";
-        this.message_z = "Z Descendente";
       } else{
-        this.message = "...";
-        this.message_x = "";
-        this.message_y = "";
-        this.message_z = "";
+        this.mvn = "...";
       }
     }
   }
