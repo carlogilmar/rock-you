@@ -3,6 +3,10 @@
 
     <h1 class="mt-5"> Rock You! </h1>
     <hr>
+    <span class="badge badge-secondary"><h2>{{mvn}}</h2></span>
+    <p>{{message}}</p>
+
+    <hr>
     <br>
 
     <div class="row">
@@ -21,12 +25,6 @@
         z: {{z}} <span class="badge badge-secondary">Z Descendente</span><br>
       </div>
     </div>
-
-    <hr>
-    <p>{{message}}</p>
-    <p><h1>{{message_x}}</h1></p>
-    <p><h1>{{message_y}}</h1></p>
-    <p><h1>{{message_z}}</h1></p>
 
   </div>
 </div>

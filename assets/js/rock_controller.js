@@ -4,6 +4,7 @@ import socket from "./socket"
 export const app = new Vue({
   el:"#app",
   data: {
+    mvn: null,
     message: "Socket abajo!",
     message_x: "",
     message_y: "",
@@ -62,11 +63,15 @@ export const app = new Vue({
     movement: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
         this.message = "El dispositivo está en reposo sobre la mesa";
+        this.mvn = "Reposo";
       } else if (this.x > 10){
+        this.mvn = "Lateral";
         this.message_x = "X Lateral";
       } else if (this.y > 8){
+        this.mvn = "Frontal";
         this.message_y = "Y NorteSur";
       } else if (this.z > 8){
+        this.mvn = "Descendente";
         this.message_z = "Z Descendente";
       } else{
         this.message = "...";
