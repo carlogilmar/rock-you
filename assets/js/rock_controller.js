@@ -5,6 +5,9 @@ export const app = new Vue({
   el:"#app",
   data: {
     message: "Socket abajo!",
+    message_x: "",
+    message_y: "",
+    message_z: "",
     acc: "Buscando...",
     e1: "-",
     e2: "-",
@@ -40,20 +43,37 @@ export const app = new Vue({
       this.acc = "Scroll down";
     },
     orientation: function(e){
-   		this.beta = e.beta;
-   		this.gama = e.gamma;
-   		this.alpha = e.alpha;
+   		this.beta = Math.round(e.beta);
+   		this.gama = Math.round(e.gamma);
+   		this.alpha = Math.round(e.alpha);
     },
     motion: function(e){
-   		this.abeta = e.rotationRate.beta;
-   		this.agama = e.rotationRate.gamma;
-   		this.aalpha = e.rotationRate.alpha;
-			this.x = e.acceleration.x;
-			this.y = e.acceleration.y;
-			this.z = e.acceleration.z;
-			this.agx = e.accelerationIncludingGravity.x;
-			this.agy = e.accelerationIncludingGravity.y;
-			this.agz = e.accelerationIncludingGravity.z;
-		}
+   		//this.abeta = Math.round( e.rotationRate.beta );
+   		//this.agama = Math.round( e.rotationRate.gamma );
+   		//this.aalpha = Math.round( e.rotationRate.alpha );
+			this.x = Math.round(e.acceleration.x *10)/10;
+			this.y = Math.round(e.acceleration.y *10)/10;
+			this.z = Math.round(e.acceleration.z *10)/10;
+			this.agx = Math.round(e.accelerationIncludingGravity.x *10)/10;
+			this.agy = Math.round(e.accelerationIncludingGravity.y *10)/10;
+			this.agz = Math.round(e.accelerationIncludingGravity.z *10)/10;
+      this.movement();
+		},
+    movement: function(){
+      if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
+        this.message = "El dispositivo está en reposo sobre la mesa";
+      } else if (this.x > 10){
+        this.message_x = "X Lateral";
+      } else if (this.y > 8){
+        this.message_y = "Y NorteSur";
+      } else if (this.z > 8){
+        this.message_z = "Z Descendente";
+      } else{
+        this.message = "...";
+        this.message_x = "";
+        this.message_y = "";
+        this.message_z = "";
+      }
+    }
   }
 });
