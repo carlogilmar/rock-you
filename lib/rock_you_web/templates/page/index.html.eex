@@ -1,20 +1,32 @@
 <div id="app">
-  <h1 class="mt-5"> Rock You! </h1>
-  <p>{{message}}</p>
-  <hr>
-  <p>{{acc}}</p>
-	<p>
-		alpha: {{alpha}} <br>
-		beta: {{beta}} <br>
-		gama: {{gama}} <br>
-		x: {{x}} <br>
-		y: {{y}} <br>
-		z: {{z}} <br>
-		alpha: {{aalpha}} <br>
-		beta: {{abeta}} <br>
-		gama: {{agama}} <br>
-		x: {{agx}} <br>
-		y: {{agy}} <br>
-		z: {{agz}} <br>
-	</p>
+  <div class="container">
+
+    <h1 class="mt-5"> Rock You! </h1>
+    <hr>
+    <br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <b> Orientación del dispositivo: </b><br>
+        alpha: {{alpha}}  <span class="badge badge-secondary"> Izquierda </span><br>
+        beta: {{beta}}  <span class="badge badge-secondary"> De frente</span> <br>
+        gama: {{gama}}  <span class="badge badge-secondary">De costado</span> <br>
+        <hr>
+      </div>
+      <div class="col-md-6">
+        <b> Acelerómetro </b><br>
+        <hr>
+        x: {{x}} <span class="badge badge-secondary">X Izq a Der</span><br>
+        y: {{y}} <span class="badge badge-secondary">Y Sur a Norte</span><br>
+        z: {{z}} <span class="badge badge-secondary">Z Descendente</span><br>
+      </div>
+    </div>
+
+    <hr>
+    <p>{{message}}</p>
+    <p><h1>{{message_x}}</h1></p>
+    <p><h1>{{message_y}}</h1></p>
+    <p><h1>{{message_z}}</h1></p>
+
+  </div>
 </div>
