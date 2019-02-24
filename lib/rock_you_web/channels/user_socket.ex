@@ -1,6 +1,8 @@
 defmodule RockYouWeb.UserSocket do
   use Phoenix.Socket
 
+  channel "rock:*", RockYouWeb.RockChannel
+
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
   end
