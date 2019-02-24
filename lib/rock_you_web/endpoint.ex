@@ -2,7 +2,7 @@ defmodule RockYouWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rock_you
 
   socket "/socket", RockYouWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 50_000],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
