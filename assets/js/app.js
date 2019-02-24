@@ -5,3 +5,5 @@ import 'bootstrap';
 import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
+// Import scripts
+import "./rock_controller"

@@ -45,6 +45,11 @@ module.exports = (env, options) => ({
       }
     ]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
