@@ -6,7 +6,6 @@ export const app = new Vue({
   data: {
     mvn: null,
     message: " 😟 ",
-    acc: "Buscando...",
     e1: "-",
     e2: "-",
 		beta: "",
@@ -31,15 +30,10 @@ export const app = new Vue({
         this.message = " 😊 ";
       })
       .receive("error", resp => { console.log("Unable to join", resp) });
-    window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('deviceorientation', this.orientation);
     window.addEventListener('devicemotion', this.motion);
   },
   methods:{
-    handleScroll: function(){
-      console.log("Scroolll down!!");
-      this.acc = "Scroll down";
-    },
     orientation: function(e){
    		this.beta = Math.round(e.beta);
    		this.gama = Math.round(e.gamma);
