@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import socket from "./socket"
+import {Howl, Howler} from 'howler';
 
 export const app = new Vue({
   el:"#app",
@@ -19,7 +20,8 @@ export const app = new Vue({
 		aalpha: "",
 		agx: "",
 		agy: "",
-		agz: ""
+		agz: "",
+    sound: null
   },
   created: function() {
     console.log("Rock Controller Here!!");
@@ -31,6 +33,13 @@ export const app = new Vue({
       })
       .receive("error", resp => { console.log("Unable to join", resp) });
     window.addEventListener('devicemotion', this.motion);
+    console.log("Inicializando");
+    this.sound = new Howl({
+      src: [ '/sounds/piano.wav' ],
+      autoplay: true,
+      volume: 1
+    });
+    this.sound.play();
   },
   methods:{
     motion: function(e){
