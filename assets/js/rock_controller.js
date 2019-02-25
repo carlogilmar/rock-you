@@ -38,8 +38,8 @@ export const app = new Vue({
       .receive("error", resp => { console.log("Unable to join", resp) });
     window.addEventListener('devicemotion', this.motion);
     // add howler sounds
-    this.sound_piano = new Howl({ src: [ '/sounds/piano.wav' ], volume: 1 });
-    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.wav' ], volume: 1});
+    this.sound_piano = new Howl({ src: [ '/sounds/piano.mp3' ], volume: 1 });
+    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.mp3' ], volume: 1});
     this.sound_vocals.once('load', this.load_vocals);
     this.sound_piano.once('load', this.load_piano);
   },
