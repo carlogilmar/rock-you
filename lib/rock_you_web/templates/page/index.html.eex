@@ -14,14 +14,6 @@
       <h3 v-if="!piano_status && !vocals_status"> Cargando sonidos... </h3>
       <br><br><br>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <b> Acelerómetro </b><br>
-        x: {{x}} <span class="badge badge-secondary">X Izq a Der</span><br>
-        y: {{y}} <span class="badge badge-secondary">Y Sur a Norte</span><br>
-        z: {{z}} <span class="badge badge-secondary">Z Descendente</span><br>
-      </div>
-    </div>
   </div>
   <div class="container" v-else>
     <br><br>

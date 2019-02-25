@@ -56,13 +56,13 @@ export const app = new Vue({
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
         this.mvn = "-";
         this.sound_piano.volume(0);
-      } else if (this.x > 5){
+      } else if (this.x > 2.5){
         this.mvn = "Lateral";
         this.sound_piano.volume(1);
-      } else if (this.y > 5){
+      } else if (this.y > 2.5){
         this.mvn = "Frontal";
         this.sound_piano.volume(1);
-      } else if (this.z > 5){
+      } else if (this.z > 2.5){
         this.mvn = "Descendente";
         this.sound_piano.volume(1);
       } else{
