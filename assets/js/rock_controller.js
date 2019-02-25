@@ -21,7 +21,11 @@ export const app = new Vue({
 		agx: "",
 		agy: "",
 		agz: "",
-    sound: null
+    sound_piano: null,
+    sound_vocals: null,
+    play_status: null,
+    piano_status: "",
+    vocals_status: ""
   },
   created: function() {
     console.log("Rock Controller Here!!");
@@ -33,15 +37,15 @@ export const app = new Vue({
       })
       .receive("error", resp => { console.log("Unable to join", resp) });
     window.addEventListener('devicemotion', this.motion);
-    console.log("Inicializando");
-    this.sound = new Howl({
-      src: [ '/sounds/piano.wav' ],
-      autoplay: true,
-      volume: 1
-    });
-    this.sound.play();
+    // add howler sounds
+    this.sound_piano = new Howl({ src: [ '/sounds/piano.wav' ], volume: 1 });
+    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.wav' ], volume: 1});
+    this.sound_vocals.once('load', this.load_vocals);
+    this.sound_piano.once('load', this.load_piano);
   },
   methods:{
+    load_vocals:function(){ this.vocals_status="ready"},
+    load_piano:function(){ this.piano_status="ready"},
     motion: function(e){
 			this.x = Math.round(e.acceleration.x *10)/10;
 			this.y = Math.round(e.acceleration.y *10)/10;
@@ -51,15 +55,26 @@ export const app = new Vue({
     movement: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
         this.mvn = "-";
-      } else if (this.x > 15){
+        this.sound_piano.volume(0);
+      } else if (this.x > 5){
         this.mvn = "Lateral";
-      } else if (this.y > 15){
+        this.sound_piano.volume(1);
+      } else if (this.y > 5){
         this.mvn = "Frontal";
-      } else if (this.z > 15){
+        this.sound_piano.volume(1);
+      } else if (this.z > 5){
         this.mvn = "Descendente";
+        this.sound_piano.volume(1);
       } else{
+        this.sound_piano.volume(0);
         this.mvn = "...";
       }
+    },
+    play: function(){
+      this.sound_vocals.play();
+      this.sound_piano.play();
+      this.sound_piano.volume(0)
+      this.play_status = "Comenzando la prueba...";
     }
   }
 });

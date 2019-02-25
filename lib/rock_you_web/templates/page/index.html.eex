@@ -4,11 +4,14 @@
     <div class="text-center">
       <h1 class="mt-5"> Rock You! </h1>
       <small>Connection: {{message}}</small>
-      <hr>
       <span class="badge badge-info" v-if="mvn=='Reposo'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-success" v-if="mvn=='Lateral'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-danger" v-if="mvn=='Frontal'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-primary" v-if="mvn=='Descendente'"><h2>{{mvn}}</h2></span>
+      <br>
+      <!-- button -->
+      <button v-if="!play_status && piano_status == 'ready' && vocals_status == 'ready'" v-on:click="play" class="btn btn-primary"> Comenzar Prueba </button>
+      <h3 v-if="!piano_status && !vocals_status"> Cargando sonidos... </h3>
       <br><br><br>
     </div>
     <div class="row">
@@ -27,6 +30,9 @@
     <div class="alert alert-warning" role="alert">
       <b>El dispositivo no es capaz de probar esta aplicación.</b> Prueba en un dispositivo móbil con un navegador actualizado.
     </div>
+    <br>
+    <button v-if="!play_status && piano_status == 'ready' && vocals_status == 'ready'" v-on:click="play" class="btn btn-primary"> Comenzar Prueba </button>
+    <h3 v-if="!piano_status && !vocals_status"> Cargando sonidos... </h3>
   </div>
 
 </div>
