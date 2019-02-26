@@ -4,11 +4,12 @@
     <div class="text-center">
       <h1 class="mt-5"> Rock You! </h1>
       <small>Connection: {{message}}</small>
-      <p style="font-size: 150px;" v-if="mvn=='Reposo'"> {{mvn}} </p>
-      <p style="font-size: 150px;" v-if="mvn=='Lateral'"> {{mvn}} </p>
-      <p style="font-size: 150px;" v-if="mvn=='Frontal'"> {{mvn}} </p>
-      <p style="font-size: 150px;" v-if="mvn=='Descendente'"> {{mvn}} </p>
+      <span class="badge badge-info" v-if="mvn=='Reposo'"><h2>{{mvn}}</h2></span>
+      <span class="badge badge-success" v-if="mvn=='Lateral'"><h2>{{mvn}}</h2></span>
+      <span class="badge badge-danger" v-if="mvn=='Frontal'"><h2>{{mvn}}</h2></span>
+      <span class="badge badge-primary" v-if="mvn=='Descendente'"><h2>{{mvn}}</h2></span>
       <br>
+      <strong> {{orn}} </strong> <br/>
       Beta: {{beta}} <br>
       Gamma: {{gama}} <br>
       Alpha: {{alpha}} <br>

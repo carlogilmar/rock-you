@@ -6,21 +6,14 @@ export const app = new Vue({
   el:"#app",
   data: {
     mvn: null,
-    message: " 😟 ",
-    e1: "-",
-    e2: "-",
+    message: " 💀 ",
 		beta: "",
 		gama: "",
 		alpha: "",
+    orn: "",
 		x: null,
 		y: null,
 		z: null,
-		abeta: "",
-		agama: "",
-		aalpha: "",
-		agx: "",
-		agy: "",
-		agz: "",
     sound_piano: null,
     sound_vocals: null,
     play_status: null,
@@ -51,6 +44,7 @@ export const app = new Vue({
       this.beta = Math.round(e.beta);
       this.gama = Math.round(e.gamma);
       this.alpha = Math.round(e.alpha);
+      this.orientation_check();
     },
     motion: function(e){
 			this.x = Math.round(e.acceleration.x *10)/10;
@@ -58,6 +52,17 @@ export const app = new Vue({
 			this.z = Math.round(e.acceleration.z *10)/10;
       this.movement();
 		},
+    orientation_check:function(){
+      if( this.x && this.y && this.z && this.beta && this.gama ){
+        if( this.beta > 1 && this.beta <15 && this.gama < 5){
+          this.orn = "Inclinado";
+        } else if( this.beta > 50 && this.beta < 100 && this.gama < 5 ){
+          this.orn = "Parado";
+        } else if( this.gama > 35 && this.gama < 80){
+          this.orn = "De costado";
+        }
+      }
+    },
     movement: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
         this.mvn = "-";
