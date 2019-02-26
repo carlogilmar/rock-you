@@ -24,8 +24,8 @@ export const app = new Vue({
     window.addEventListener('devicemotion', this.motion);
     window.addEventListener('deviceorientation', this.orientation);
     // add howler sounds
-    this.sound_piano = new Howl({ src: [ '/sounds/piano.mp3' ], volume: 1 });
-    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.mp3' ], volume: 1});
+    this.sound_piano = new Howl({ src: [ '/sounds/parte3.m4a' ], volume: 1, loop: true});
+    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.mp3' ], volume: 0});
     this.sound_vocals.once('load', this.load_vocals);
     this.sound_piano.once('load', this.load_piano);
   },
