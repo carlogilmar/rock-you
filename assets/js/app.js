@@ -7,3 +7,4 @@ window.jQuery = $;
 window.$ = $;
 // Import scripts
 import "./rock_controller"
+import "./playme_controller"
