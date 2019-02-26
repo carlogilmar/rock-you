@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="container" v-else>
+  <div class="container" v-if="mvn">
     <br><br>
     <h2> Sorry :( </h2>
     <br>
