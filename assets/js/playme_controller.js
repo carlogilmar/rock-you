@@ -71,24 +71,18 @@ export const app = new Vue({
         } else if( this.beta > -35 && this.beta < 30 && this.gama > 50 && this.gama < 90 && this.alpha > 60 && this.alpha < 100){
           this.orn = "De costado";
           this.movement_3();
-        } else {
-          this.orn = "...";
-          this.sound_guitar.volume(0);
-          this.sound_claps.volume(0);
-          this.sound_corum.volume(0);
-          this.sound_vocals.volume(0);
         }
       }
     },
     movement_1: function(){
       if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
-        this.mvn = "Hacia abajo";
+        this.mvn = "M1: Pausa";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
       } else {
-        this.mvn = "Hacia abajo Frontal";
+        this.mvn = "M1: Lateral";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(1);
@@ -97,13 +91,13 @@ export const app = new Vue({
     },
     movement_2: function(){
       if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
-        this.mvn = "Parado";
+        this.mvn = "M2: Pausa";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
       } else {
-        this.mvn = "Parado Lateral"; // ia la izquierda
+        this.mvn = "M2: Lateral"; // ia la izquierda
         this.sound_guitar.volume(0);
         this.sound_claps.volume(1);
         this.sound_corum.volume(0);
@@ -117,24 +111,24 @@ export const app = new Vue({
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
-        this.mvn = "Costado Guitarra";
+        this.mvn = "M3: Costado";
       } else {
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
-        this.mvn = "-";
+        this.mvn = "M3: Pausa";
       }
     },
     movement_4: function(){
       if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
-        this.mvn = "Hacia abajo inv -";
+        this.mvn = "M4: Pausa";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
       } else{
-        this.mvn = "Hacia abajo inverso";
+        this.mvn = "M4: Inverso";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
