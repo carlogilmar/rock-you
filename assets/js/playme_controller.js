@@ -73,15 +73,14 @@ export const app = new Vue({
     movement_1: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
         this.mvn = "Inclinado";
-      } else if (this.x > 4){
-        this.mvn = "Inclinado Lateral"; // a la derecha
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+      } else if (this.x > 4 || this.y > 4){
+        this.mvn = "Inclinado Frontal";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(1);
-      } else if (this.y > 4){
-        this.mvn = "Inclinado Frontal";
-      } else if (this.z > 4){
-        this.mvn = "Inclinado Descendente";
       } else{
         this.mvn = "...";
       }
@@ -96,11 +95,6 @@ export const app = new Vue({
         this.mvn = "Parado Lateral"; // ia la izquierda
         this.sound_guitar.volume(0);
         this.sound_claps.volume(1);
-        this.sound_corum.volume(0);
-      } else if (this.z > 4){
-        this.mvn = "Parado Descendente"; // hacia abajo
-        this.sound_guitar.volume(0);
-        this.sound_claps.volume(0);
         this.sound_corum.volume(0);
       } else{
         this.mvn = "...";
