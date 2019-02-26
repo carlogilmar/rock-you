@@ -3,16 +3,11 @@
   <div class="container" v-if="mvn">
     <div class="text-center">
       <h1 class="mt-5"> Rock You! </h1>
-      <small>Connection: {{message}}</small>
+      <p>Connection: {{message}}</small>
       <span class="badge badge-info" v-if="mvn=='Reposo'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-success" v-if="mvn=='Lateral'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-danger" v-if="mvn=='Frontal'"><h2>{{mvn}}</h2></span>
       <span class="badge badge-primary" v-if="mvn=='Descendente'"><h2>{{mvn}}</h2></span>
-      <br>
-      <strong> {{orn}} </strong> <br/>
-      Beta: {{beta}} <br>
-      Gamma: {{gama}} <br>
-      Alpha: {{alpha}} <br>
       <br>
       <!-- button -->
       <button v-if="!play_status && piano_status == 'ready' && vocals_status == 'ready'" v-on:click="play" class="btn btn-primary"> Comenzar Prueba </button>
@@ -29,7 +24,7 @@
     </div>
     <br>
     <button v-if="!play_status && piano_status == 'ready' && vocals_status == 'ready'" v-on:click="play" class="btn btn-primary"> Comenzar Prueba </button>
-    <h3 v-if="!piano_status && !vocals_status"> Cargando sonidos... </h3>
+    <h3 v-if="!piano_status && !vocals_status"> Cargando ... </h3>
   </div>
 
 </div>
