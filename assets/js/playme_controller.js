@@ -58,61 +58,60 @@ export const app = new Vue({
     },
     orientation_check:function(){
       if( this.x && this.y && this.z && this.beta && this.gama ){
-        if( this.beta > 1 && this.beta <15 && this.gama < 5 && this.gama > -5){
-          this.orn = "Inclinado";
+
+        if( this.beta > -10 && this.beta <15 && this.gama < 30 && this.gama > -30 && this.alpha < 20 || this.alpha > 345){
+          this.orn = "Hacia abajo";
           this.movement_1();
-        } else if( this.beta > 50 && this.beta < 100 && this.gama < 5 && this.alpha < 50){
+        } else if( this.beta > -20 && this.beta <15 && this.gama < 30 && this.gama > -30 && this.alpha < 220 && this.alpha > 130){
+          this.orn = "Hacia abajo inverso";
+          this.movement_4();
+        } else if( this.beta > 50 && this.beta < 100 && this.gama < 70 && this.gama > -70 && this.alpha < 90 || this.alpha > 270){
           this.orn = "Parado";
           this.movement_2();
-        } else if( this.gama > 35 && this.gama < 80 && this.alpha > 90 && this.alpha < 140){
+        } else if( this.beta > -35 && this.beta < 30 && this.gama > 50 && this.gama < 90 && this.alpha > 60 && this.alpha < 100){
           this.orn = "De costado";
           this.movement_3();
-        } else if( this.gama < -35 && this.gama > -90 && this.alpha > 90 && this.alpha < 140 && this.beta > 10 && this.beta < 20){
-          this.orn = "De costado inverso";
-          this.movement_4();
+        } else {
+          this.orn = "...";
+          this.sound_guitar.volume(0);
+          this.sound_claps.volume(0);
+          this.sound_corum.volume(0);
+          this.sound_vocals.volume(0);
         }
       }
     },
     movement_1: function(){
-      if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
-        this.mvn = "Inclinado";
+      if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
+        this.mvn = "Hacia abajo";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
-      } else if (this.x > 4 || this.y > 4){
-        this.mvn = "Inclinado Frontal";
+      } else {
+        this.mvn = "Hacia abajo Frontal";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(1);
         this.sound_vocals.volume(0);
-      } else{
-        this.mvn = "...";
       }
     },
     movement_2: function(){
-      if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
+      if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
         this.mvn = "Parado";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
-      } else if (this.x > 4 || this.y > 4){
+      } else {
         this.mvn = "Parado Lateral"; // ia la izquierda
         this.sound_guitar.volume(0);
         this.sound_claps.volume(1);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(0);
-      } else{
-        this.mvn = "...";
-        this.sound_guitar.volume(0);
-        this.sound_claps.volume(0);
-        this.sound_corum.volume(0);
-        this.sound_vocals.volume(0);
       }
     },
     movement_3: function(){
-      if( this.x > 3 || this.y > 3 || this.z > 3){
+      if( this.x >= 2 || this.y >= 2 || this.z >= 2){
         // de costado
         this.sound_guitar.volume(1);
         this.sound_claps.volume(0);
@@ -128,19 +127,18 @@ export const app = new Vue({
       }
     },
     movement_4: function(){
-      if( this.x > 3 || this.y > 3 || this.z > 3){
-        // de costado
+      if( this.x <= 0.3 && this.y <= 0.3 && this.z <= 0.3 ){
+        this.mvn = "Hacia abajo inv -";
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+        this.sound_vocals.volume(0);
+      } else{
+        this.mvn = "Hacia abajo inverso";
         this.sound_guitar.volume(0);
         this.sound_claps.volume(0);
         this.sound_corum.volume(0);
         this.sound_vocals.volume(1);
-        this.mvn = "Costado Inverso";
-      } else {
-        this.sound_guitar.volume(0);
-        this.sound_claps.volume(0);
-        this.sound_corum.volume(0);
-        this.sound_vocals.volume(1);
-        this.mvn = "- Costado Inverso -";
       }
     },
     ms: function(){
