@@ -14,24 +14,37 @@ export const app = new Vue({
 		x: null,
 		y: null,
 		z: null,
-    sound_piano: null,
+    //sounds
+    sound_guitar: null,
+    sound_claps: null,
+    sound_corum: null,
     sound_vocals: null,
-    play_status: null,
-    piano_status: "",
-    vocals_status: ""
+    vocals_status: null,
+    guitar_status: null,
+    claps_status: null,
+    corum_status: null,
+    play_flag: null
   },
   created: function() {
     window.addEventListener('devicemotion', this.motion);
     window.addEventListener('deviceorientation', this.orientation);
     // add howler sounds
-    this.sound_piano = new Howl({ src: [ '/sounds/parte3.m4a' ], volume: 1, loop: true});
-    this.sound_vocals = new Howl({ src: [ '/sounds/vocals.mp3' ], volume: 0});
+    this.sound_guitar = new Howl({ src: [ '/sounds/rockyou_guitar.m4a' ], volume: 1, loop: true});
+    this.sound_claps= new Howl({ src: [ '/sounds/rockyou_claps1.m4a' ], volume: 1, loop: true});
+    this.sound_corum = new Howl({ src: [ '/sounds/rockyou_corum2.m4a' ], volume: 1, loop: true});
+    this.sound_vocals = new Howl({ src: [ '/sounds/rockyou_vocals.m4a' ], volume: 1});
+    this.sound_guitar.once('load', this.load_guitar);
+    this.sound_claps.once('load', this.load_claps);
+    this.sound_corum.once('load', this.load_corum);
     this.sound_vocals.once('load', this.load_vocals);
-    this.sound_piano.once('load', this.load_piano);
   },
   methods:{
+
+    load_guitar:function(){this.guitar_status="ready"},
+    load_claps:function(){this.claps_status="ready"},
+    load_corum:function(){this.corum_status="ready"},
     load_vocals:function(){ this.vocals_status="ready"},
-    load_piano:function(){ this.piano_status="ready"},
+
     orientation: function(e){
       this.beta = Math.round(e.beta);
       this.gama = Math.round(e.gamma);
@@ -47,51 +60,74 @@ export const app = new Vue({
       if( this.x && this.y && this.z && this.beta && this.gama ){
         if( this.beta > 1 && this.beta <15 && this.gama < 5){
           this.orn = "Inclinado";
-          this.sound_piano.volume(0);
-        } else if( this.beta > 50 && this.beta < 100 && this.gama < 5 ){
+          this.movement_1();
+        } else if( this.beta > 50 && this.beta < 100 && this.gama < 5  && this.alpha < 50){
           this.orn = "Parado";
-          this.sound_piano.volume(0);
-        } else if( this.gama > 35 && this.gama < 80){
+          this.movement_2();
+        } else if( this.gama > 35 && this.gama < 80 && this.alpha > 90 && this.alpha < 140){
           this.orn = "De costado";
           this.movement_3();
         }
       }
     },
-    movement_3: function(){
+    movement_1: function(){
       if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
-        this.mvn = "";
-        this.sound_piano.volume(0);
-      } else if (this.x > 3 || this.y > 3 || this.z > 3 ){
-        this.mvn = "Lateral";
-        this.sound_piano.volume(1);
-      } else {
-        this.mvn = "";
-        this.sound_piano.volume(0);
-      }
-    },
-    movement: function(){
-      if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
-        this.mvn = "-";
-        this.sound_piano.volume(0);
-      } else if (this.x > 3){
-        this.mvn = "Lateral";
-        this.sound_piano.volume(1);
-      } else if (this.y > 3){
-        this.mvn = "Frontal";
-        this.sound_piano.volume(1);
-      } else if (this.z > 3){
-        this.mvn = "Descendente";
-        this.sound_piano.volume(1);
+        this.mvn = "Inclinado";
+      } else if (this.x > 4){
+        this.mvn = "Inclinado Lateral"; // a la derecha
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(1);
+      } else if (this.y > 4){
+        this.mvn = "Inclinado Frontal";
+      } else if (this.z > 4){
+        this.mvn = "Inclinado Descendente";
       } else{
-        this.sound_piano.volume(0);
         this.mvn = "...";
       }
     },
-    play: function(){
-      this.sound_vocals.play();
-      this.sound_piano.play();
-      this.sound_piano.volume(0)
-      this.play_status = "Comenzando la prueba...";
+    movement_2: function(){
+      if( this.x < 0.5 && this.y < 0.5 && this.z < 0.5 ){
+        this.mvn = "Parado";
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+      } else if (this.x > 4 || this.y > 4){
+        this.mvn = "Parado Lateral"; // ia la izquierda
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(1);
+        this.sound_corum.volume(0);
+      } else if (this.z > 4){
+        this.mvn = "Parado Descendente"; // hacia abajo
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+      } else{
+        this.mvn = "...";
+      }
+    },
+    movement_3: function(){
+      if( this.x > 3 || this.y > 3 || this.z > 3){
+        // de costado
+        this.sound_guitar.volume(1);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+        this.mvn = "Costado Guitarra";
+      } else {
+        this.sound_guitar.volume(0);
+        this.sound_claps.volume(0);
+        this.sound_corum.volume(0);
+        this.mvn = "-";
+      }
+    },
+    ms: function(){
+      this.sound_guitar.play();
+      this.sound_claps.play();
+      this.sound_corum.play();
+      this.sound_guitar.volume(0);
+      this.sound_claps.volume(0);
+      this.sound_corum.volume(0);
+      this.play_flag = "ok";
     }
   }
 });
