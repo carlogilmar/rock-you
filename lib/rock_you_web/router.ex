@@ -17,10 +17,7 @@ defmodule RockYouWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/playme", PageController, :playme
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", RockYouWeb do
-  #   pipe_through :api
-  # end
 end
