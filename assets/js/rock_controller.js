@@ -37,6 +37,7 @@ export const app = new Vue({
       })
       .receive("error", resp => { console.log("Unable to join", resp) });
     window.addEventListener('devicemotion', this.motion);
+    window.addEventListener('deviceorientation', this.orientation);
     // add howler sounds
     this.sound_piano = new Howl({ src: [ '/sounds/piano.mp3' ], volume: 1 });
     this.sound_vocals = new Howl({ src: [ '/sounds/vocals.mp3' ], volume: 1});
@@ -46,6 +47,11 @@ export const app = new Vue({
   methods:{
     load_vocals:function(){ this.vocals_status="ready"},
     load_piano:function(){ this.piano_status="ready"},
+    orientation: function(e){
+      this.beta = Math.round(e.beta);
+      this.gama = Math.round(e.gamma);
+      this.alpha = Math.round(e.alpha);
+    },
     motion: function(e){
 			this.x = Math.round(e.acceleration.x *10)/10;
 			this.y = Math.round(e.acceleration.y *10)/10;
